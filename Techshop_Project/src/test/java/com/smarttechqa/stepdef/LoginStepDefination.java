@@ -28,13 +28,15 @@ public class LoginStepDefination extends BaseClass {
 
 	@When("User click on the sign In button")
 	public void user_click_on_the_sign_in_button() {
-
+		driver.findElement(By.xpath("//a[@href='/login']")).click();
 
 	}
 
 	@When("User enters the email")
-	public void user_enters_the_email() {
+	public void user_enters_the_email() throws IOException {
 		driver.findElement(By.xpath("//*[@type='email']")).sendKeys("testuser@email.com"); //Sending the email address
+		Utilities.getHighLighter(driver.findElement(By.id("email")));// we have to refresh
+		Utilities.takeScreenShot();// We have to code it in utility class and do this code in base class.
 		
 	}
 
@@ -53,7 +55,7 @@ public class LoginStepDefination extends BaseClass {
 
 	@Then("The user is succesfully loged in and user name is displayed")
 	public void the_user_is_succesfully_loged_in_and_user_name_is_displayed() {
-
+		System.out.println("The title of the application is:" +driver.getTitle());
 
 	}
 

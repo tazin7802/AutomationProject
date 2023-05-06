@@ -67,11 +67,18 @@ public class Utilities extends BaseClass{
 			srcFile.createNewFile();
 			Files.copy(srcFile, targetFile);
 		}
+
+		public static void getHighLighter(WebElement element) {
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;');", element);
+			
+		}
+		}
 		
 		//public static void getHighLighter(WebElement element) {
 			//JavascriptExecutor executor = (JavascriptExecutor) driver;
 			//executor.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;');", element);
 			
-		}
+		
 
 	
