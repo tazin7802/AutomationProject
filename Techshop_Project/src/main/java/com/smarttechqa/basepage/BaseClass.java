@@ -70,7 +70,7 @@ public class BaseClass {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		BaseClass.setUp();// This is how we call Static class
-		
+		System.out.println(" I love you");
 		
 	}
 
