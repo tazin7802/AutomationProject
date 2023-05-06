@@ -28,8 +28,15 @@ public class BaseClass {
 		// starting the Automation.
 		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 		driver.get("https://www.smarttechqa.com");// The get() will take us to the URL of the application.
-     	//**driver.findElement(By.xpath("//a[@href='/login']")).click();// this will take us to the login & click.
-		//**driver.findElement(By.xpath("//*[@type='email']")).sendKeys("testuser@email.com"); //Sending the email address. This code will move
+     	//driver.findElement(By.xpath("//a[@href='/login']")).click();// this will take us to the login & click.
+		//driver.findElement(By.xpath("//*[@type='email']")).sendKeys("testuser@email.com"); //Sending the email address. This code will move
+		//driver.findElement(By.id("password")).sendKeys("123456");
+		//driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
+		//System.out.println("The title of the application is:" +driver.getTitle());
+		
+		
+		
+		
 		// to Step definition 
 		
 		//Thread.sleep(10000);
@@ -44,9 +51,9 @@ public class BaseClass {
 		//Utilities.takeScreenShot();// We have to code it in utility class and do this code in base class.
 		
 		//Thread.sleep(5000);
-		//**driver.findElement(By.id("password")).sendKeys("123456");//Sending the email address. This code will move
+		//driver.findElement(By.id("password")).sendKeys("123456");//Sending the email address. This code will move
 		// to Step definition 
-		//**driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();//Sending the email address. This code will move
+		//driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();//Sending the email address. This code will move
 		// to Step definition 
 		//Utilities.takeScreenShot();
 		//driver.findElement(By.cssSelector("#password")).sendKeys("123456");
@@ -59,7 +66,7 @@ public class BaseClass {
 	    //driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();// this how to sign in
 	    
 	    
-		//**System.out.println("The title of the application is:" +driver.getTitle());//Sending the email address. This code will move
+		//System.out.println("The title of the application is:" +driver.getTitle());//Sending the email address. This code will move
 		// to Step definition 
 		//driver.quit();
 		//driver.findElement(By.linkText("Go Back")).click(); //this will take me back to the home page from the cart page
@@ -68,11 +75,11 @@ public class BaseClass {
 		
 	}
 	
-	public static void main(String[] args) throws InterruptedException, IOException {
+	/*public static void main(String[] args) throws InterruptedException, IOException {
 		
 		BaseClass.setUp();// This is how we call Static class
 		//System.out.println(" I love you");
 		
-	}
+	}*/
 
 }
