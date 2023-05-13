@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.smarttechqa.utils.Utilities;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class BaseClass {
 	
 
@@ -19,19 +21,26 @@ public class BaseClass {
 	
 	public static void setUp() throws InterruptedException, IOException {// throws added for unconditional wait
 		// To open a browser
-	System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+		//WebDriverManager.chromedriver().setup();// so we don't have to update Chromedriver everytime.
+		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
 		WebDriver driver = new ChromeDriver(); //need to take off the Webdriver, since made it static veriable.
 	    driver = new ChromeDriver();
-		
+	   
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();// This is how to delete cookies. We have to delete cookies before
+		// driver.quit();
 		// starting the Automation.
 		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 		driver.get("https://www.smarttechqa.com");// The get() will take us to the URL of the application.
-     	//driver.findElement(By.xpath("//a[@href='/login']")).click();// this will take us to the login & click.
+     	driver.findElement(By.xpath("//a[@href='/login']")).click();// this will take us to the login & click.
 		//driver.findElement(By.xpath("//*[@type='email']")).sendKeys("testuser@email.com"); //Sending the email address. This code will move
 		//driver.findElement(By.id("password")).sendKeys("123456");
+		
 		//driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
+		//Utilities.getExplicitWait(driver.findElement(By.name("q")), 2);
+		//driver.findElement(By.name("q")).sendKeys("iPhone");
+		
+		//driver.findElement(By.xpath("//button[@class='p-2 btn btn-outline-success']")).click();
 		//System.out.println("The title of the application is:" +driver.getTitle());
 		
 		
@@ -62,7 +71,8 @@ public class BaseClass {
 		//Thread.sleep(10000);// Unconditional wait use for finding bug
 		//Utilities.getExplicitWait(driver.findElement(By.xpath("//button[@class='btn btn-primary']")), 0);
 		//Thread.sleep(10000);
-		//driver.findElement(By.name("q")).submit();
+		//Utilities.getExplicitWait(driver.findElement(By.name("q")), 10);
+		//driver.findElement(By.name("q")).sendKeys("iPhone");// Sends keys to search for iphone.
 	    //driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();// this how to sign in
 	    
 	    
