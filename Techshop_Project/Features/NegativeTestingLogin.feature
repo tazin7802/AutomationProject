@@ -12,8 +12,8 @@ Then I am suppose to get an error message
 Examples:
 | email                     | password |
 | testuser123456@email.com  | 123456   |
-#| testuser1234567@email.com | 123456   |
-#| testuser12345@email.com   | 123456   |
-#| testuser@email.com        | 1234567  |
+| testuser1234567@email.com | 123456   |
+| testuser12345@email.com   | 123456   |
+| testuser@email.com        | 1234567  |
 
 

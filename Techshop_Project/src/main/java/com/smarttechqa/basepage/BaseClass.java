@@ -1,38 +1,115 @@
 package com.smarttechqa.basepage;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.smarttechqa.utils.Utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
+	//Static variable are outside of methods and inside the class
+		public static WebDriver driver;
+		public static Properties property;
+		public static Logger logger;
+			
+		public BaseClass() {
+			logger = Logger.getLogger("Automation Testing");
+			PropertyConfigurator.configure("src/test/resources/Log4j.properties");		
+		} 
+
+		public static void initializeProperties() {	
+			
+			try {
+				property = new Properties();
+				InputStream ip = new FileInputStream("src/test/resources/config.properties");
+				property.load(ip);
+			} catch (IOException error) {	
+				error.printStackTrace();
+				System.out.println("Can't find the file");		
+			} catch (Exception error) {
+				error.getMessage();
+			} finally {
+				System.out.println("This code will always run");
+			}
+		}
+			
+		public static void setUp(){
+			if(property.getProperty("BrowserType").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			//System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+			driver = new ChromeDriver();
+			} else if (property.getProperty("BrowserType").equalsIgnoreCase("firefox")) {
+				WebDriverManager.firefoxdriver().setup();
+				driver = new FirefoxDriver();
+			} else if (property.getProperty("BrowserType").equalsIgnoreCase("edge")) {
+				WebDriverManager.edgedriver().setup();
+				driver = new EdgeDriver();
+			}
+			
+			driver.manage().window().maximize();
+			driver.manage().deleteAllCookies();	//This will delete user session information	
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.get("https://www.smarttechqa.com/"); //This goes the to URL of the application
+			
+	
+}}//tazin
+	
+		
+	
+	
+	
+	
+	
+	
 	
 
-	public static WebDriver driver;
+	
+	
+	
+	//public static WebDriver driver;
+	
 	
 	//public static WebDriver driver;// I am making it static, so it can access from other class.
 	              // This is a static veritable; means inside the class, but outside the method.
 	
-	public static void setUp() throws InterruptedException, IOException {// throws added for unconditional wait
+	/*public static void setUp() /*throws InterruptedException, IOException *///{// throws added for unconditional wait
 		// To open a browser
-		//WebDriverManager.chromedriver().setup();// so we don't have to update Chromedriver everytime.
-		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
-		WebDriver driver = new ChromeDriver(); //need to take off the Webdriver, since made it static veriable.
-	    driver = new ChromeDriver();
-	   
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();// This is how to delete cookies. We have to delete cookies before
+	//	WebDriverManager.chromedriver().setup();// so we don't have to update Chromedriver everytime.
+	//	System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+	//	WebDriver driver = new ChromeDriver(); //need to take off the Webdriver, since made it static veriable.
+	   // driver = new ChromeDriver();
+	    
+	  
+	    
+	    
+		//driver.manage().window().maximize();
+		//driver.manage().deleteAllCookies();// This is how to delete cookies. We have to delete cookies before
 		// driver.quit();
 		// starting the Automation.
-		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-		driver.get("https://www.smarttechqa.com");// The get() will take us to the URL of the application.
-     	driver.findElement(By.xpath("//a[@href='/login']")).click();// this will take us to the login & click.
+		//driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		//driver.get("https://www.smarttechqa.com");// The get() will take us to the URL of the application.
+     	
+		
+		
+		
+		
+		
+		
+		
+		
+		//driver.findElement(By.xpath("//a[@href='/login']")).click();// this will take us to the login & click.
 		//driver.findElement(By.xpath("//*[@type='email']")).sendKeys("testuser@email.com"); //Sending the email address. This code will move
 		//driver.findElement(By.id("password")).sendKeys("123456");
 		
@@ -83,13 +160,13 @@ public class BaseClass {
 				//driver.findElement(By.partialLinkText("Go")).click();
 		
 		
-	}
+	//}
 	
-	/*public static void main(String[] args) throws InterruptedException, IOException {
+	//public static void main(String[] args) throws InterruptedException, IOException {
 		
-		BaseClass.setUp();// This is how we call Static class
+		//BaseClass.setUp();// This is how we call Static class
 		//System.out.println(" I love you");
 		
-	}*/
+	
 
-}
+

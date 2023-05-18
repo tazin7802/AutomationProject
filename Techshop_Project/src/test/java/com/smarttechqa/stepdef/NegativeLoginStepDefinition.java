@@ -3,18 +3,24 @@ package com.smarttechqa.stepdef;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 
+import com.smarttech.elements.ElementPage;
 import com.smarttechqa.basepage.BaseClass;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class NegativeLoginStepDefinition extends BaseClass {
 
+	ElementPage pf = PageFactory.initElements(driver, ElementPage.class);
+	
+	//@Before
 	@Given("I open the browser and I navigate to the application")
 	public void i_open_the_browser_and_i_navigate_to_the_application() throws InterruptedException, IOException {
-    BaseClass.setUp();
+    //BaseClass.setUp(); We will do this method only from hooks class.
 
 	}
 
